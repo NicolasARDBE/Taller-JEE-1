@@ -1,0 +1,20 @@
+package servicios;
+
+import jakarta.ejb.LocalBean;
+import jakarta.ejb.Stateless;
+
+/**
+ * Session Bean implementation class ServiciosUsuariosLogica
+ */
+@Stateless
+@LocalBean
+public class ServiciosUsuariosLogica implements ServiciosUsuariosLogicaRemote {
+
+    /**
+     * Default constructor. 
+     */
+    public ServiciosUsuariosLogica() {
+        // TODO Auto-generated constructor stub
+    }
+
+}

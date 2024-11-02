@@ -1,0 +1,59 @@
+package servicios;
+
+import jakarta.ejb.LocalBean;
+import jakarta.ejb.Stateless;
+
+/**
+ * Session Bean implementation class ServiciosUsuariosLogica
+ */
+@Stateless
+@LocalBean
+public class ServiciosUsuariosLogica implements ServiciosUsuariosLogicaRemote {
+
+    private ServiciosUsuarioDatosRemote serviciosUsuarioRemote;
+
+    // Default constructor: Llamar al lookup en el constructor
+    public ServiciosUsuarioLogica() {
+        try {
+            this.serviciosUsuarioRemote = lookupRemoteEJB();
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Lookup de capa de datos
+    private ServiciosUsuarioDatosRemote lookupRemoteEJB() throws NamingException {
+        Properties jndiProperties = new Properties();
+        jndiProperties.put(Context.INITIAL_CONTEXT_FACTORY, "org.wildfly.naming.client.WildFlyInitialContextFactory");
+        
+        // Dirección contenedor datos
+        jndiProperties.put(Context.PROVIDER_URL, "http-remoting://localhost:8280");
+        
+        // Credenciales
+        jndiProperties.put(Context.SECURITY_PRINCIPAL, "usuario-datos");
+        jndiProperties.put(Context.SECURITY_CREDENTIALS, "contraseña-datos");
+        
+        // Lookup EJB
+        jndiProperties.put("jboss.naming.client.ejb.context", true);
+
+        // Clase EJB remota - Coincidir con los nombres de la capa de datos
+        String namespace = "ejb:";
+        String appName = "EntidadesEAR";
+        String moduleName = "ServiciosDatos";
+        String distinctName = "";
+        String beanName = "ServiciosUsuarioDatos";
+        String viewClassName = ServiciosUsuarioDatosRemote.class.getName();
+        
+        Context ctx = new InitialContext(jndiProperties);
+        return (ServiciosUsuarioDatosRemote) ctx.lookup(
+                namespace + appName + "/" + moduleName + "/" + distinctName + "/" + beanName + "!" + viewClassName);
+    }
+    
+    // Métodos de la interfaz
+    @Override
+    public List<Usuario> getAllUsersLogic() {
+        List<Usuario> usuarios = serviciosUsuarioRemote.getAllUsuarios();
+        return usuarios;
+    }
+
+}

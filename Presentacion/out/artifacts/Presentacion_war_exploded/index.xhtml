@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Gestión de Espacios</title>
+</h:head>
+<h:body>
+    <h1>Gestión de Espacios</h1>
+
+    <!-- Formulario para Agregar o Actualizar Espacio -->
+    <h:form>
+        <h3>Agregar Nuevo Espacio</h3>
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel value="ID:" />
+            <h:inputText value="#{espacioBean.espacio.id}" />
+
+            <h:outputLabel value="Nombre:" />
+            <h:inputText value="#{espacioBean.espacio.nombre}" />
+
+            <h:outputLabel value="Capacidad:" />
+            <h:inputText value="#{espacioBean.espacio.capacidad}" />
+        </h:panelGrid>
+
+        <h:commandButton value="Agregar Espacio" action="#{espacioBean.agregarEspacio}" />
+    </h:form>
+
+    <br /><br />
+
+    <!-- Tabla para Mostrar Lista de Espacios -->
+    <h:dataTable value="#{espacioBean.espacios}" var="espacio" border="1" cellpadding="5">
+        <h:column>
+            <f:facet name="header">ID</f:facet>
+            ${espacio.id}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Nombre</f:facet>
+            ${espacio.nombre}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Capacidad</f:facet>
+            ${espacio.capacidad}
+        </h:column>
+        <h:column>
+            <f:facet name="header">Acciones</f:facet>
+
+            <!-- Botón de Actualizar -->
+            <h:commandButton value="Actualizar" action="#{espacioBean.actualizarEspacio(espacio)}" />
+
+            <!-- Botón de Eliminar -->
+            <h:commandButton value="Eliminar" action="#{espacioBean.eliminarEspacio(espacio.id)}" />
+        </h:column>
+    </h:dataTable>
+</h:body>
+</html>

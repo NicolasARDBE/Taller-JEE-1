@@ -1,0 +1,5 @@
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2">
+  <deployment>
+      <include-resource-root path="WEB-INF/lib" />
+  </deployment>
+</jboss-deployment-structure>

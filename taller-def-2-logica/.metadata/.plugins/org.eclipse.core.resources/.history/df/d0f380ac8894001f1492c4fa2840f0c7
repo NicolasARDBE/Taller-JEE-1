@@ -1,0 +1,13 @@
+package servicios;
+
+import jakarta.ejb.Remote;
+
+import model.Espacio;
+import java.util.List;
+
+@Remote
+public interface ServiciosEspaciosLogicaRemote {
+	
+	public List<Espacio> getAllUsersLogic();
+
+}
