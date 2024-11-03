@@ -1,7 +1,7 @@
-# Taller EJBS Arquitectura de 3 Capas
+# Taller EJBS Arquitectura de 3 Niveles
 
 ## Introducción
-Este repositorio contiene un proyecto de arquitectura de 3 capas basado en Java EE, que utiliza WildFly como servidor de aplicaciones y MySQL como base de datos. A continuación, se explican los pasos para configurar y ejecutar el proyecto.
+Este repositorio contiene un proyecto de arquitectura de 3 niveles basado en Java EE, que utiliza WildFly como servidor de aplicaciones y MySQL como base de datos. A continuación, se explican los pasos para configurar y ejecutar el proyecto.
 
 ## Requisitos Previos
 - MySQL como base de datos.
