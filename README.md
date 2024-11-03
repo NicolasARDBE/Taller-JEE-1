@@ -41,7 +41,10 @@ Este repositorio contiene un proyecto de arquitectura de 3 capas basado en Java 
 ### 3. Inicio de los Contenedores
 - Iniciar cada contenedor ejecutando el comando:
   ```bash
-  ./bin/standalone.bin
+  ./bin/standalone.bat
+- Para el caso de lógica ejecutar:
+  ```bash
+  ./bin/standalone.bat -c standalone-full.xml
 ### 4. Despliegue de Aplicaciones
 1. **Acceso a la consola de administración**:
    - Iniciar sesión en la consola de administración de WildFly usando las credenciales configuradas.
